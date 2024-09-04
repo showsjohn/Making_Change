@@ -13,17 +13,19 @@ public class RegisterPanel extends JPanel
 
     public RegisterPanel()
     {
+        // Create panels and textfield for input
         register = new Register();
         inputPanel = new JPanel();
         titlePanel = new JPanel();
-
         changePanel = new PursePanel();
         input = new JTextField();
+
         dollarSign = new JLabel("$");
         dollarSign.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,40 ));
         title = new JLabel("Enter Amount");
         title.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,40 ));
 
+        // Set size of panels
         titlePanel.setPreferredSize(new Dimension(1000, 60));
         inputPanel.setPreferredSize(new Dimension(1000, 200));
         inputPanel.setOpaque(false);
@@ -33,7 +35,7 @@ public class RegisterPanel extends JPanel
         input.setFont(new Font("Serif", Font.PLAIN, 40));
         input.addActionListener(new InputListener());
 
-
+        // add objects to their respective parent containers
         titlePanel.add(title);
         inputPanel.add(dollarSign);
         inputPanel.add(input);
@@ -52,8 +54,6 @@ public class RegisterPanel extends JPanel
             changePanel.repaint();
             revalidate();
             repaint();
-
-
         }
     }
 

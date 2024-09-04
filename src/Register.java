@@ -1,6 +1,15 @@
+import java.util.Scanner;
+
 public class Register {
 
-    public Purse makeChange(double amt)
+    /********************************************************
+     * Function: makeChange
+     * Args: double
+     * Returns: Purse object
+     * Description: Takes a double and adds it a purse object,
+     * then returns the purse
+     ********************************************************/
+    public static Purse makeChange(double amt)
     {
         Purse purse = new Purse();
 
@@ -60,13 +69,31 @@ public class Register {
         if(pennies > 0)
             purse.add(Denomination.Penny, pennies);
 
-
-
         return purse;
     }
 
     public static void main(String[] args) {
 
+        Purse purse;
+        double amt = 0;
+
+        // Create scanner object to accept input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter an amount: $");
+
+        // Try to capture input as double
+        try
+        {
+            amt = scanner.nextDouble();
+        }
+        catch(Exception e)
+        {
+            System.out.println("You must enter a number only!");
+            throw e;
+        }
+
+        purse = makeChange(amt);
+        System.out.println(purse);
 
     }
 
