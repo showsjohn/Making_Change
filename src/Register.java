@@ -1,48 +1,72 @@
 public class Register {
-    public static Purse makeChange(double amt)
+
+    public Purse makeChange(double amt)
     {
+        Purse purse = new Purse();
+
+        if (amt < 0)
+            return purse;
+
         amt = Math.round(amt * 100.0);
         int amount = (int) amt;
-        int tens, fives, ones, quarters, dimes, nickels, pennies;
+        int hundreds, fifties, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
+
+        hundreds = amount / 10000;
+        amount = amount % 10000;
+        if(hundreds > 0)
+            purse.add(Denomination.Hundred, hundreds);
+
+        fifties = amount / 5000;
+        amount = amount % 5000;
+        if(fifties > 0)
+            purse.add(Denomination.Fifty, fifties);
+
+        twenties = amount / 2000;
+        amount = amount % 2000;
+        if(twenties > 0)
+            purse.add(Denomination.Twenty, twenties);
 
         tens = amount / 1000;
         amount = amount % 1000;
+        if(tens > 0)
+            purse.add(Denomination.Ten, tens);
 
         fives = amount / 500;
         amount = amount % 500;
+        if(fives > 0)
+            purse.add(Denomination.Five, fives);
 
         ones = amount / 100;
         amount = amount % 100;
+        if(ones > 0)
+            purse.add(Denomination.One, ones);
 
         quarters = amount / 25;
         amount = amount % 25;
+        if(quarters > 0)
+            purse.add(Denomination.Quarter, quarters);
 
         dimes = amount / 10;
         amount = amount % 10;
+        if(dimes > 0)
+            purse.add(Denomination.Dime, dimes);
 
         nickels = amount / 5;
         amount = amount % 5;
+        if(nickels > 0)
+            purse.add(Denomination.Nickel, nickels);
 
         pennies = amount;
+        if(pennies > 0)
+            purse.add(Denomination.Penny, pennies);
 
-        Purse purse = new Purse();
 
-        purse.add(new Denomination("Ten", 10.00, Form.bill, ""), tens);
-        purse.add(new Denomination("Five", 5.0, Form.bill, ""), fives);
-        purse.add(new Denomination("One", 1.0, Form.bill, ""), ones);
-        purse.add(new Denomination("Quarter", 0.25, Form.coin, ""), quarters);
-        purse.add(new Denomination("Dime", 0.1, Form.coin, ""), dimes);
-        purse.add(new Denomination("Nickel", 0.05, Form.coin, ""), nickels);
-        purse.add(new Denomination("Penny", 0.01, Form.coin, ""), pennies);
 
         return purse;
     }
 
     public static void main(String[] args) {
 
-        Purse purse = makeChange(13.92);
-
-        System.out.print(purse.toString());
 
     }
 
